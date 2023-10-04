@@ -3,7 +3,7 @@ const axios = require('axios');
 const { admin, db } = require('@/firebaseDB');
 require('dotenv').config({ path: '.variables.env' });
 //your own api key from OpenAIApi
-const apiKey = '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';
+const apiKey = process.env.OPENAI_SK;
 
 async function requestOpenAI(message) {
   const response = await axios.post(
