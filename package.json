@@ -1,0 +1,58 @@
+{
+  "name": "idurar-backend",
+  "version": "1.0.0",
+  "engines": {
+    "npm": "8.5.5",
+    "node": "16.15.0"
+  },
+  "scripts": {
+    "start": "node ./server.js",
+    "dev": "nodemon ./server.js --ignore public/",
+    "production": "NODE_ENV=production"
+  },
+  "dependencies": {
+    "axios": "^1.5.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "currency.js": "2.0.4",
+    "dotenv": "4.0.0",
+    "express": "^4.18.1",
+    "express-rate-limit": "^7.0.1",
+    "firebase-admin": "^11.10.1",
+    "glob": "7.1.1",
+    "helmet": "^4.6.0",
+    "html-pdf": "^3.0.1",
+    "joi": "^17.10.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "module-alias": "^2.2.2",
+    "moment": "^2.26.0",
+    "multer": "^1.4.2",
+    "node-fetch": "^3.3.2",
+    "openai": "^4.10.0",
+    "pug": "^3.0.2",
+    "resend": "^0.17.2",
+    "stripe": "^13.6.0",
+    "transliteration": "^2.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "_moduleAliases": {
+    "@": "."
+  },
+  "description": "Just you wait folks!",
+  "main": "app.js",
+  "keywords": [],
+  "author": "Salah Eddine Lalami",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idurar/idurar-erp-crm/.git"
+  },
+  "bugs": {
+    "url": "https://github.com/idurar/idurar-erp-crm//issues"
+  },
+  "homepage": "https://github.com/idurar/idurar-erp-crm/#readme"
+}
