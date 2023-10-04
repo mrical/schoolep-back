@@ -24,7 +24,10 @@ const { admin, db } = require('./firebaseDB');
 // create our Express app
 const app = express();
 const corsOptions = {
-  origin: true,
+  origin: [
+    'https://main.d1llxlir3zjmv5.amplifyapp.com',
+    'http://main.d1llxlir3zjmv5.amplifyapp.com',
+  ],
   credentials: true,
 };
 // Define the rate limit options
