@@ -27,6 +27,8 @@ const corsOptions = {
   origin: [
     'https://main.d1llxlir3zjmv5.amplifyapp.com',
     'http://main.d1llxlir3zjmv5.amplifyapp.com',
+    'https://main.d1jqaj4h2vttjx.amplifyapp.com',
+    'http://main.d1jqaj4h2vttjx.amplifyapp.com',
   ],
   // credentials: true,
 };
@@ -38,13 +40,14 @@ const limiter = rateLimit({
 
 // setting cors at one place for all the routes
 // putting cors as first in order to avoid unneccessary requests from unallowed origins
-app.use(function (req, res, next) {
-  // if (req.url.includes('/api')) {
-  //   cors(corsOptions)(req, res, next);
-  // } else {
-  cors()(req, res, next);
-  // }
-});
+// app.use(function (req, res, next) {
+//   if (req.url.includes('/api')) {
+//     cors(corsOptions)(req, res, next);
+//   } else {
+//   cors()(req, res, next);
+//   }
+// });
+app.use(cors())
 
 // serves up static files from the public folder. Anything in public/ will just be served up as the file it is
 // Takes the raw requests and turns them into usable properties on req.body
