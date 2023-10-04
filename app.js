@@ -28,7 +28,7 @@ const corsOptions = {
     'https://main.d1llxlir3zjmv5.amplifyapp.com',
     'http://main.d1llxlir3zjmv5.amplifyapp.com',
   ],
-  credentials: true,
+  // credentials: true,
 };
 // Define the rate limit options
 const limiter = rateLimit({
