@@ -6,8 +6,8 @@
     "node": "16.15.0"
   },
   "scripts": {
-    "start": "node ./server.js",
-    "dev": "nodemon ./server.js --ignore public/",
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js --ignore public/",
     "production": "NODE_ENV=production"
   },
   "dependencies": {

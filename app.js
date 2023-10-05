@@ -1,3 +1,22 @@
+require('module-alias/register');
+
+// Make sure we are running node 7.6+
+const [major, minor] = process.versions.node.split('.').map(parseFloat);
+if (major < 14 || (major === 14 && minor <= 0)) {
+  console.log('Please go to nodejs.org and download version 8 or greater. 👌\n ');
+  process.exit();
+}
+
+// import environmental variables from our variables.env file
+require('dotenv').config({ path: '.variables.env' });
+
+const glob = require('glob');
+const path = require('path');
+
+glob.sync('./models/**/*.js').forEach(function (file) {
+  require(path.resolve(file));
+});
+
 const express = require('express');
 
 const helmet = require('helmet');
@@ -6,7 +25,6 @@ const cors = require('cors');
 const { stripe } = require('@/stripe');
 
 const cookieParser = require('cookie-parser');
-require('dotenv').config({ path: '.variables.env' });
 
 const helpers = require('./helpers');
 
@@ -24,13 +42,8 @@ const { admin, db } = require('./firebaseDB');
 // create our Express app
 const app = express();
 const corsOptions = {
-  origin: [
-    'https://main.d1llxlir3zjmv5.amplifyapp.com',
-    'http://main.d1llxlir3zjmv5.amplifyapp.com',
-    'https://main.d1jqaj4h2vttjx.amplifyapp.com',
-    'http://main.d1jqaj4h2vttjx.amplifyapp.com',
-  ],
-  // credentials: true,
+  origin: true,
+  credentials: true,
 };
 // Define the rate limit options
 const limiter = rateLimit({
@@ -40,15 +53,14 @@ const limiter = rateLimit({
 
 // setting cors at one place for all the routes
 // putting cors as first in order to avoid unneccessary requests from unallowed origins
-// app.use(function (req, res, next) {
-//   if (req.url.includes('/api')) {
-//     cors(corsOptions)(req, res, next);
-//   } else {
-//   cors()(req, res, next);
-//   }
-// });
-app.use(cors())
-app.options('*', cors())
+app.use(function (req, res, next) {
+  if (req.url.includes('/api')) {
+    cors(corsOptions)(req, res, next);
+  } else {
+    cors()(req, res, next);
+  }
+});
+
 // serves up static files from the public folder. Anything in public/ will just be served up as the file it is
 // Takes the raw requests and turns them into usable properties on req.body
 app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
@@ -129,6 +141,13 @@ if (app.get('env') === 'development') {
 
 // production error handler
 app.use(errorHandlers.productionErrors);
+
+
+app.set('port', process.env.PORT || 8888);
+const server = app.listen(app.get('port'), () => {
+  console.log(`Express running → On PORT : ${server.address().port}`);
+});
+
 
 // done! we export it so we can start the site in start.js
 module.exports = app;
