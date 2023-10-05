@@ -48,7 +48,7 @@ const limiter = rateLimit({
 //   }
 // });
 app.use(cors())
-
+app.options('*', cors())
 // serves up static files from the public folder. Anything in public/ will just be served up as the file it is
 // Takes the raw requests and turns them into usable properties on req.body
 app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {

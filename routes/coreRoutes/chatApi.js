@@ -45,7 +45,7 @@ function updateUserRequestCount({ userId, userChatRequestCount }) {
 const router = express.Router();
 const USER_FREE_REQUEST_LIMIT = parseInt(process.env.USER_FREE_REQUEST_LIMIT);
 
-router.route('/chat/').post(async (req, res) => {
+router.route('/chat').post(async (req, res) => {
   try {
     const user = await admin.auth().verifyIdToken(req.headers.authorization);
     const { message } = req.body;
