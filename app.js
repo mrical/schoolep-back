@@ -20,7 +20,6 @@ glob.sync('./models/**/*.js').forEach(function (file) {
 const express = require('express');
 
 const helmet = require('helmet');
-const path = require('path');
 const cors = require('cors');
 const { stripe } = require('@/stripe');
 
